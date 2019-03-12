@@ -10,7 +10,7 @@ function [dpath_dt] = particle_trajectory(q, m, path)
     %          [r_x; r_y; r_z; v_x; v_y; v_z]
     %
     % Outputs:
-    %   d_path_dt - First derivate of particle trajectory
+    %   d_path_dt - First derivative of particle trajectory
     %               [v_x; v_y; v_z; a_x; a_y; a_z]
     %
     % Example: 
