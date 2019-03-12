@@ -48,7 +48,6 @@ end
 
 % Moving: yes; Electric: no; Magnetic: yes
 if not(isequal(f_lorentz([0; 0; 0], [0; 5; 5], q, v), [500; -500; 500]))
-    f_lorentz([0; 0; 0], [0; 5; 5], q, v)
     warning('Unexpected force for moving charge with magnetic only');
 end
 
