@@ -12,7 +12,7 @@ function [B] = b_dipole(m, r)
     %   B - Cartesian column vector of magnetic field in T
     %
     % Example: 
-    %    B = b_dipole([0; 0; 100], [100; 100; 0]);
+    %   B = b_dipole([0; 0; 100], [100; 100; 0]);
     %
     % Other m-files required: none
     % Subfunctions: none

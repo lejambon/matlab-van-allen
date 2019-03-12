@@ -11,7 +11,7 @@ function [B] = b_earth(r)
     %   B - Cartesian column vector of magnetic field in T
     %
     % Example: 
-    %    B = b_earth([100; 100; 0]);
+    %   B = b_earth([100; 100; 0]);
     %
     % Other m-files required: b_dipole.m
     % Subfunctions: none

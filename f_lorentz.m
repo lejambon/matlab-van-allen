@@ -13,7 +13,7 @@ function [F] = f_lorentz(E, B, q, v)
     %   F - Cartesian column vector of force on particle in N
     %
     % Example: 
-    %    F = f_lorentz([100; 0; 0], [0; 100; 0], 10, [100; 5; 100])
+    %   F = f_lorentz([100; 0; 0], [0; 100; 0], 10, [100; 5; 100])
     %
     % Other m-files required: none
     % Subfunctions: none

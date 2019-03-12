@@ -14,7 +14,7 @@ function [dpath_dt] = particle_trajectory(q, m, path)
     %               [v_x; v_y; v_z; a_x; a_y; a_z]
     %
     % Example: 
-    %    dpath_dt = particle_trajectory(10, 20, [10; 10; 0; 5; 0; 5])
+    %   dpath_dt = particle_trajectory(10, 20, [10; 10; 0; 5; 0; 5])
     %
     % Other m-files required: b_earth.m f_lorentz.m
     % Subfunctions: none

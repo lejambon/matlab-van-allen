@@ -54,7 +54,7 @@ for n=1:size(r_tests, 2)
     
     % Throw error if B_x or B_y aren't zero
     if or(not(isequal(B(1), 0)), not(isequal(B(2), 0)))
-        warning('B_x & B_y on XY plane far from z-axis not zero');
+        warning('B_x & B_y on X/Y plane far from z-axis not zero');
     end
     % Check B_z is parallel to z-axis
     if not(B(3) > 0)
