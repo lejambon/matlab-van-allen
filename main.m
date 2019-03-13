@@ -1,6 +1,6 @@
 %MAIN Plot particle trajectories in Earth's magnetic field
 % 
-% Other m-files required: none
+% Other m-files required: particle_trajectory.m
 % Subfunctions: none
 % MAT-files required: none
 %
@@ -39,8 +39,11 @@ v_p = energytovelocity(eVtoJ(proton_eV), m_p);
 path_p0 = [2*R_e; 0; 0; sind(45)*v_p; 0; cosd(45)*v_p];
 % Setup differential equation to solve for proton
 trajectory_p = @(t, s) particle_trajectory(+q_e, m_p, s);
-% Solve for proton path over time 0s to 52s
-[t_p, path_p] = ode45(trajectory_p, [0 52], path_p0);
+% Decrease relative tolerance when ODE solving from default of 1e-3
+%  to stop proton bounce having different height after one revolution
+opts = odeset('RelTol',1e-4);
+% Solve for proton path over time of roughly one revolution (32.3s)
+[t_p, path_p] = ode45(trajectory_p, [0 32.3], path_p0, opts);
 
 %% Electron (Outer belt)
 
@@ -50,25 +53,19 @@ electron_eV = 10e6;
 v_e = energytovelocity(eVtoJ(electron_eV), m_e);
 % Initial conditions for electron: [r_x r_y r_z v_x v_y v_z]
 %  Place electron 7 Earth radii away from equator
-%  Put velocity at 30 degree angle with magnetic field in X/Z
-path_e0 = [8*R_e; 0; 0; sind(30)*v_e; 0; cosd(30)*v_e];
+%  Put velocity at 60 degree angle with magnetic field in X/Z
+path_e0 = [8*R_e; 0; 0; sind(60)*v_e; 0; cosd(60)*v_e];
 % Setup differential equation to solve for electron
 trajectory_e = @(t, s) particle_trajectory(-q_e, m_e, s);
 
 % Below are three different unsuccessful methods for getting electron path
 
-% Solve for electron path using ODE function for stiff eqn from 0 to 1s
-%[t_e, path_e] = ode23s(trajectory_e, [0 1], path_e0);
-
-% Euler method, large step. Produces jerky very broken motion
-% Note that ode1.m came from https://uk.mathworks.com/matlabcentral/answers/98293-is-there-a-fixed-step-ordinary-differential-equation-ode-solver-in-matlab-8-0-r2012b
-%path_e = ode1(trajectory_e, linspace(0, 1, 10000), electron_p0);
-
-% Euler method, short step. Produces good motion for a short bit of the
-%  trajectory. Gets more chaotic later if time range expanded. Plot heavy
-%  due to huge number of points
-% Note that ode1.m came from https://uk.mathworks.com/matlabcentral/answers/98293-is-there-a-fixed-step-ordinary-differential-equation-ode-solver-in-matlab-8-0-r2012b
-%path_e = ode1(trajectory_e, linspace(0, 10, 100000000), electron_p0);
+% Decrease relative tolerance to stop bounce height drifting
+% Increase absolute tolerance to greatly speedup solving
+opts = odeset('RelTol',1e-5,'AbsTol',1e-5*R_e);
+% Solve for first 5 seconds. Gives only fraction of one revolution however
+%  runs within ~25 seconds and so gives idea of motion
+[t_e, path_e] = ode45(trajectory_e, [0 5], path_e0, opts);
 
 %% Plot
 
