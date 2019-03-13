@@ -26,7 +26,8 @@ function [B] = b_earth(r)
     end
 
     % Magnetic dipole of Earth in A m^2
-    m_earth = [0; 0; -7.94e22];
+    % Ref: http://wdc.kugi.kyoto-u.ac.jp/poles/polesexp.html
+    m_earth = [0; 0; -7.71e22];
     
     % Magnetic field of Earth at point r in T
     B = b_dipole(m_earth, r);
