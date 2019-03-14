@@ -23,16 +23,16 @@ function [F] = f_lorentz(E, B, q, v)
     % Mar 2019; Last revision: 12-Mar-2019
 
     % Check input(s) are of correct type or bail otherwise
-    if (not(isequal(size(E), [3, 1])))
+    if ~isequal(size(E), [3, 1])
         error('E should be a 3x1 column vector');
     end
-    if (not(isequal(size(B), [3, 1])))
+    if ~isequal(size(B), [3, 1])
         error('B should be a 3x1 column vector');
     end
-    if (not(isscalar(q)))
+    if ~isscalar(q)
         error('q should be a scalar');
     end
-    if (not(isequal(size(v), [3, 1])))
+    if ~isequal(size(v), [3, 1])
         error('v should be a 3x1 column vector');
     end
 

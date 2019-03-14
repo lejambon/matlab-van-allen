@@ -21,7 +21,7 @@ function [B] = b_earth(r)
     % Mar 2019; Last revision: 12-Mar-2019
     
     % Check input(s) are of correct type or bail otherwise
-    if (not(isequal(size(r), [3, 1])))
+    if ~isequal(size(r), [3, 1])
         error('r should be a 3x1 column vector');
     end
 
