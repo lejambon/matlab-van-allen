@@ -57,9 +57,6 @@ v_e = energytovelocity(eVtoJ(electron_eV), m_e);
 path_e0 = [8*R_e; 0; 0; sind(60)*v_e; 0; cosd(60)*v_e];
 % Setup differential equation to solve for electron
 trajectory_e = @(t, s) particle_trajectory(-q_e, m_e, s);
-
-% Below are three different unsuccessful methods for getting electron path
-
 % Decrease relative tolerance to stop bounce height drifting
 % Increase absolute tolerance to greatly speedup solving
 opts = odeset('RelTol',1e-5,'AbsTol',1e-5*R_e);
